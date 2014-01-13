@@ -62,7 +62,8 @@ public class MoveToTarget : MonoBehaviour
 			m_avoidanceVector = Vector2.zero;
 			for (int i = 0; i < surroundingCount; i++) {
 				Collider2D currentPotentialAlly = m_surroundingAllies [i];
-				if (currentPotentialAlly.gameObject != gameObject) {
+				if (currentPotentialAlly.gameObject != gameObject &&
+					currentPotentialAlly.gameObject.layer == gameObject.layer) {
 					GameObject currentAlly = currentPotentialAlly.gameObject; // TODO: Add a test to detect if actually an ally (currently just avoids everything)
 					m_avoidanceVector += (Vector2)((transform.position - currentAlly.transform.position));
 				}
