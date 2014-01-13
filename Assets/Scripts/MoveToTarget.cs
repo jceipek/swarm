@@ -4,6 +4,7 @@ using System.Collections;
 public class MoveToTarget : MonoBehaviour
 {
 
+	public bool m_isControlled = false;
 	public float m_movementSpeed = 10f;
 	public float m_targetAttractionSpeed = 3f;
 	public float m_clumpDistance = 5f;
@@ -15,16 +16,41 @@ public class MoveToTarget : MonoBehaviour
 	private Vector2 m_velocityVector;
 	private Vector2 m_avoidanceVector;
 	private Collider2D[] m_surroundingAllies = new Collider2D[10];
+	private SpriteRenderer m_spriteRenderer;
+
+	public void EnableControl ()
+	{
+		m_isControlled = true;
+		m_spriteRenderer.color = Color.green;
+	}
+
+	public void DisableControl ()
+	{
+		m_isControlled = false;
+		m_spriteRenderer.color = Color.white;
+	}
 
 	public void SetTarget (Vector2 target)
 	{
-		m_target = target;
+		if (m_isControlled) {
+			m_target = target;
+		}
+	}
 
+	private void OnEnable ()
+	{
+		m_spriteRenderer = GetComponent<SpriteRenderer> ();
 	}
 
 	private void Start ()
 	{
 		StartCoroutine (UpdateAllyAvoidance ());
+		SetTarget (transform.position);
+	}
+
+	private void FixedUpdate ()
+	{
+		Move ();
 	}
 
 	private IEnumerator UpdateAllyAvoidance ()
@@ -57,10 +83,4 @@ public class MoveToTarget : MonoBehaviour
 			m_movementVector *= m_clumpinessDamping;
 		}
 	}
-
-	private void FixedUpdate ()
-	{
-		Move ();
-	}
-
 }

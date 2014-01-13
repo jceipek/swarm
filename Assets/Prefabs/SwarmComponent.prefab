@@ -63,7 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572e5e5d6093a4548b934a5146b37aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isControlled: 0
   m_movementSpeed: 3
+  m_targetAttractionSpeed: 3
   m_clumpDistance: 5
   m_clumpinessDamping: .5
   m_avoidanceStrength: .00999999978

@@ -17,7 +17,7 @@ public class TargetController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetButtonDown ("Click")) {
+		if (Input.GetButtonDown ("SetDest")) {
 			var pos = Input.mousePosition;
 			pos.z = m_cameraOffset;
 			m_moveToTarget.SetTarget (Camera.main.ScreenToWorldPoint (pos));
