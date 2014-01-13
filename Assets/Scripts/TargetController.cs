@@ -14,23 +14,13 @@ public class TargetController : MonoBehaviour
 		m_cameraOffset = transform.position.z - Camera.main.transform.position.z;
 	}
 
-	
-	void Start ()
-	{
-
-	}
-	
 	// Update is called once per frame
 	void Update ()
 	{
 		if (Input.GetButtonDown ("Click")) {
-
-
 			var pos = Input.mousePosition;
 			pos.z = m_cameraOffset;
-			/*transform.position = Camera.main.ScreenToWorldPoint (pos);*/
 			m_moveToTarget.SetTarget (Camera.main.ScreenToWorldPoint (pos));
-
 		}
 	}
 }
